@@ -79,6 +79,11 @@ export const useStyles = makeStyles(theme => ({
     },
 }));
 
+// const Breadcrumbs = withBreadcrumbs()(({ breadcrumbs }) => (
+//     <React.Fragment>
+//         {breadcrumbs.map(({ breadcrumb }) => breadcrumb)}
+//     </React.Fragment>
+// ));
 
 function MiniDrawer(props) {
     const classes = useStyles();
@@ -113,11 +118,12 @@ function MiniDrawer(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography component={Link} to='/' variant="h6" noWrap>
+                    <Typography style={{ color: 'white' }} component={Link} to='/' variant="h6" noWrap>
                         Cogent Health
                     </Typography>
                 </Toolbar>
             </AppBar>
+
             <Drawer
                 variant="permanent"
                 className={clsx(classes.drawer, {
@@ -137,6 +143,7 @@ function MiniDrawer(props) {
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </div>
+
                 <Divider />
                 <List>
                     {staticMenu.map((menu, index) => (

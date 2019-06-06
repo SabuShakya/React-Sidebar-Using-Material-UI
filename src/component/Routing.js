@@ -7,6 +7,7 @@ import { DepartmentSetupPage } from '../pages/DepartmentSetupPage';
 import { SubDepartmentSetupPage } from '../pages/SubDepartmentSetupPage';
 import { DeviceSetupPage } from '../pages/DeviceSetupPage';
 import { useStyles } from '../static/MiniDrawerStyles';
+import Breadcrumbs from './Breadcrumb';
 
 
 export const Routing = () => {
@@ -14,6 +15,7 @@ export const Routing = () => {
     // // const [open] = React.useState(false);
     return (
         <main className={content}>
+            <Breadcrumbs style={{color:'black'}} />
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route path='/generalSetup' exact component={GeneralSetup} />
