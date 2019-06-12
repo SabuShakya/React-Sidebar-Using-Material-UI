@@ -9,14 +9,16 @@ class MiniDrawerContainer extends React.Component {
         }
     }
 
-    handleClick = (e)=>{
+    handleClick = (e) => {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
 
-    render(){
-        return (<MiniDrawer subMenuOpen={this.state.isOpen} onClickHandler={this.handleClick} />);
+    render() {
+        const { openSideBar, sideBarClick } = this.props;
+        return (<MiniDrawer subMenuOpen={this.state.isOpen} onClickHandler={this.handleClick}
+            openSideBar={openSideBar} handlerSideBar={sideBarClick} />);
     }
 }
 

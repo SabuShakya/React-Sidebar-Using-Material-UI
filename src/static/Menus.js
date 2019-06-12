@@ -1,8 +1,10 @@
+import React from 'react';
 import { GeneralSetup } from "../pages/GeneralSetup";
 import { AdminSetupPage } from "../pages/AdminSetupPage";
 import { DepartmentSetupPage } from "../pages/DepartmentSetupPage";
 import { SubDepartmentSetupPage } from "../pages/SubDepartmentSetupPage";
 import { DeviceSetupPage } from "../pages/DeviceSetupPage";
+import { Settings, DesktopMac, Store, AccountBox } from "@material-ui/icons";
 
 export const staticMenu = [
     {
@@ -12,27 +14,31 @@ export const staticMenu = [
         path: '/generalSetup',
         component: GeneralSetup,
         exact: true,
+        icon :<Settings />,
         submenu: [
             {
                 id:3,
                 menuName: 'Admin Setup',
                 menuDescription: 'To Setup admins',
                 path: '/generalSetup/adminSetup',
-                component: AdminSetupPage
+                component: AdminSetupPage,
+                icon: <AccountBox />,
             },
             {
                 id: 4,
                 menuName: 'Department Setup',
                 menuDescription: 'To Setup departments',
                 path: '/generalSetup/department',
-                component: DepartmentSetupPage
+                component: DepartmentSetupPage,
+                icon: <AccountBox />
             },
             {
                 id: 5,
                 menuName: 'Sub Department Setup',
                 menuDescription: 'To Setup sub departments',
                 path: '/generalSetup/sub-department',
-                component: SubDepartmentSetupPage
+                component: SubDepartmentSetupPage,
+                icon: <AccountBox />
             }
         ]
     },
@@ -43,6 +49,34 @@ export const staticMenu = [
         path: '/device',
         component: DeviceSetupPage,
         exact: true,
+        icon: <DesktopMac />,
         submenu: []
+    },
+    {
+        id: 6,
+        menuName: 'Invenory Setup',
+        menuDescription: 'Inventory setup menus',
+        path: '/inventory',
+        component: DeviceSetupPage,
+        exact: true,
+        icon: <Store />,
+        submenu: [
+            {
+                id: 7,
+                menuName: 'Products',
+                menuDescription: 'To Setup products',
+                path: '/inventory/products',
+                component: AdminSetupPage,
+                icon: '',
+            },
+            {
+                id: 8,
+                menuName: 'Transactions',
+                menuDescription: 'To Setup transactions',
+                path: '/inventory/transactions',
+                component: DepartmentSetupPage,
+                icon: '',
+            }
+        ]
     }
 ];

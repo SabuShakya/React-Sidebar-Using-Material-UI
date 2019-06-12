@@ -7,15 +7,20 @@ import { DepartmentSetupPage } from '../pages/DepartmentSetupPage';
 import { SubDepartmentSetupPage } from '../pages/SubDepartmentSetupPage';
 import { DeviceSetupPage } from '../pages/DeviceSetupPage';
 import { useStyles } from '../static/MiniDrawerStyles';
-import Breadcrumbs from './Breadcrumb';
+import clsx from 'clsx';
+import SimpleAppBar from './SimpleAppBar';
 
 
-export const Routing = () => {
-    const { content } = useStyles();
-    // // const [open] = React.useState(false);
+export const Routing = (props) => {
+    const { content, toolbar, contentShift } = useStyles();
+    const { openSideBar } = props;
+
     return (
-        <main className={content}>
-            <Breadcrumbs style={{color:'black'}} />
+        <main className={clsx(content, {
+            [contentShift]: openSideBar,
+        })}>
+            <SimpleAppBar />
+            {/* <div className={toolbar} /> */}
             <Switch>
                 <Route exact path='/' component={Home} />
                 <Route path='/generalSetup' exact component={GeneralSetup} />

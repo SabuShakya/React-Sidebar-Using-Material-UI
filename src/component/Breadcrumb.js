@@ -1,32 +1,37 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import clsx from 'clsx';
 import withBreadcrumbs from "react-router-breadcrumbs-hoc";
-import {staticMenu} from '../static/Menus';
+import Paper from '@material-ui/core/Paper';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Link from '@material-ui/core/Link';
+import { staticMenu } from '../static/Menus';
+import { Link as RouterLink } from "react-router-dom";
+import { useStyles } from '../static/MiniDrawerStyles';
 
+const PureBreadcrumbs = (({ breadcrumbs }) => {
+    const classes = useStyles();
+    return (
+        <>
+            <div className={clsx(classes.breadCrumbBar)} >
+                <Paper elevation={0} className={classes.paper}>
+                    <Breadcrumbs
+                        separator={< NavigateNextIcon fontSize="small" />}
+                        aria-label="Breadcrumb">
+                        {breadcrumbs.map(({
+                            breadcrumb,
+                            match
+                        }, index) => (
+                                <div key={match.url}>
+                                    {console.log(match.url)}
+                                    <Link component={RouterLink} color="inherit" to={match.url}>{breadcrumb}</Link>
+                                </div>
+                            ))}
+                    </Breadcrumbs>
+                </Paper>
+            </div>
+        </>
+    )
+})
 
-/**
- * This component is wrapped in withBreadcrumbs which automatically
- * generates breadcrumbs based on the current route.
- *
- * If you need custom or dynamic breadcrumbs. Check out the Readme here:
- * https://github.com/icd2k3/react-router-breadcrumbs-hoc#dynamic-breadcrumbs
- */
-// const Breadcrumbs = withBreadcrumbs()(({ breadcrumbs }) => (
-//     <React.Fragment>
-//         {breadcrumbs.map(({ breadcrumb }) => breadcrumb)}
-//     </React.Fragment>
-// ));
-
-const Breadcrumbs = withBreadcrumbs(staticMenu)(({ breadcrumbs }) => (
-    <div>
-        {breadcrumbs.map(({ match, breadcrumb }) => (
-            // other props are available during render, such as `location`
-            // and any props found in your route objects will be passed through too
-            <span key={match.url} >
-                <NavLink to={match.url}>/{breadcrumb}</NavLink>
-            </span>
-        ))}
-    </div>
-));
-
-export default Breadcrumbs;
+export default withBreadcrumbs(staticMenu)(PureBreadcrumbs);

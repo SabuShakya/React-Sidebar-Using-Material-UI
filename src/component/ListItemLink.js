@@ -4,16 +4,13 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { PropTypes } from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-
 
 function ListItemLink(props) {
-    const { to, open, menuText, ...other } = props;
-
+    const { to, open, menu, menuText,icon,...other } = props;
+    
     return (
-        <ListItem button component={RouterLink} to={to} {...other}>
-            <ListItemIcon>{<InboxIcon /> }</ListItemIcon>
+        <ListItem button component={RouterLink} to={to} {...other} >
+            <ListItemIcon>{icon}</ListItemIcon>
             <ListItemText primary={menuText} />
             {open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
         </ListItem>
